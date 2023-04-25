@@ -31,14 +31,29 @@ class MainActivity : ComponentActivity() {
               Text("Some Button")
             }
 
-            var value: String by remember {
-              mutableStateOf("")
-            }
+            var value: String by remember { mutableStateOf("") }
             TextField(value = value, onValueChange = { value = it })
-
 
             Button(onClick = { }) {
               Text("Another Button")
+            }
+
+            var anotherValue: String by remember { mutableStateOf("") }
+            var isError: Boolean by remember { mutableStateOf(false) }
+            TextField(
+              value = anotherValue,
+              onValueChange = { anotherValue = it },
+              isError = isError,
+              placeholder = {
+                Text("Some Placeholder")
+              },
+              label = {
+                Text("Some Label")
+              }
+            )
+
+            Button(onClick = { isError = !isError }) {
+              Text("Toggle Error State")
             }
           }
         }
